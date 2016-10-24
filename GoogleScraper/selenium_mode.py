@@ -28,7 +28,6 @@ from GoogleScraper.scraping import SearchEngineScrape, SeleniumSearchError, get_
 from GoogleScraper.user_agents import random_user_agent
 import logging
 import urllib.parse
-from pyvirtualdisplay import Display
 
 
 logger = logging.getLogger(__name__)
@@ -617,8 +616,6 @@ class SelScrape(SearchEngineScrape, threading.Thread):
         """Run the SelScraper."""
 
         self._set_xvfb_display()
-        display = Display(visible=0, size=(1024, 768))
-        display.start()
 
         if not self._get_webdriver():
             raise Exception('{}: Aborting due to no available selenium webdriver.'.format(self.name))
@@ -638,7 +635,6 @@ class SelScrape(SearchEngineScrape, threading.Thread):
         if self.webdriver:
             self.webdriver.quit()
 
-        display.stop()
 """
 For most search engines, the normal SelScrape works perfectly, but sometimes
 the scraping logic is different for other search engines.
