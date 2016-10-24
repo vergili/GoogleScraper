@@ -260,7 +260,7 @@ manual_captcha_solving = False
 # You should start xvfb at your own
 # Format=  [hostname]= displaynumber[.screennumber], see X(7) manuel for details
 # will set environment variable $DISPLAY to it
-xvfb_display = ':99'
+xvfb_display = None
 
 """
 [HTTP]
