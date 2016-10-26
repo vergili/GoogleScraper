@@ -254,9 +254,11 @@ def get_engine(config, path=None):
     Returns:
         The sqlalchemy engine.
     """
+    from sqlalchemy.pool import SingletonThreadPool
+
     db_path = path if path else config.get('database_name', 'google_scraper') + '.db'
     echo = config.get('log_sqlalchemy', False)
-    engine = create_engine('sqlite:///' + db_path, echo=echo, connect_args={'check_same_thread': False})
+    engine = create_engine('sqlite:///' + db_path, echo=echo, poolclass=SingletonThreadPool, connect_args={'check_same_thread': False})
     Base.metadata.create_all(engine)
 
     return engine
