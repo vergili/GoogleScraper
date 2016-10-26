@@ -254,24 +254,22 @@ def get_engine(config, path=None):
     Returns:
         The sqlalchemy engine.
     """
-    from sqlalchemy.pool import QueuePool
-
     db_path = path if path else config.get('database_name', 'google_scraper') + '.db'
     echo = config.get('log_sqlalchemy', False)
-    engine = create_engine('sqlite:///' + db_path, echo=echo, poolclass=QueuePool, connect_args={'check_same_thread': False})
+    engine = create_engine('sqlite:///' + db_path, echo=echo, connect_args={'check_same_thread': False})
     Base.metadata.create_all(engine)
 
     return engine
 
 
-def get_session(config, scoped=True, engine=None, path=None):
+def get_session(config, scoped=False, engine=None, path=None):
     if not engine:
         engine = get_engine(config, path=path)
 
     session_factory = sessionmaker(
         bind=engine,
         autoflush=True,
-        autocommit=True,
+        autocommit=False,
     )
 
     if scoped:
