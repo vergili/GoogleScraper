@@ -271,7 +271,7 @@ def get_session(config, scoped=True, engine=None, path=None):
     session_factory = sessionmaker(
         bind=engine,
         autoflush=True,
-        autocommit=False,
+        autocommit=True,
     )
 
     if scoped:
