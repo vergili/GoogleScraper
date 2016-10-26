@@ -262,7 +262,7 @@ def get_engine(config, path=None):
     return engine
 
 
-def get_session(config, scoped=False, engine=None, path=None):
+def get_session(config, scoped=True, engine=None, path=None):
     if not engine:
         engine = get_engine(config, path=path)
 
