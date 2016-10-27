@@ -268,7 +268,7 @@ def get_session(config, scoped=False, engine=None, path=None):
 
     session_factory = sessionmaker(
         bind=engine,
-        autoflush=True,
+        autoflush=False,
         autocommit=False,
     )
 
