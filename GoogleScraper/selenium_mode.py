@@ -561,6 +561,8 @@ class SelScrape(SearchEngineScrape, threading.Thread):
 
                 try:
                     self.search_input.send_keys(self.query + Keys.ENTER)
+                    self.search_by_date(self.search_engine_name)
+
                 except ElementNotVisibleException:
                     time.sleep(2)
                     self.search_input.send_keys(self.query + Keys.ENTER)
@@ -592,6 +594,25 @@ class SelScrape(SearchEngineScrape, threading.Thread):
 
                     if not next_url:
                         break
+
+    def search_by_date(self, engine):
+
+        start_date = self.config.get('se_start', None)
+        end_date = self.config.get('se_end', None)
+
+        if engine == 'bing':
+            self.webdriver.find_element_by_class_name("fs_label").click()
+            time.sleep(0.25)
+
+            start_date_script = "document.getElementById('date_range_start').value='" + start_date + "'"
+            end_date_script = "document.getElementById('date_range_end').value='" + end_date + "'"
+
+            self.webdriver.execute_script(start_date_script)
+            self.webdriver.execute_script(end_date_script)
+
+            self.webdriver.find_element_by_css_selector(".cbtn input").click()
+
+
 
     def page_down(self):
         """Scrolls down a page with javascript.
@@ -702,3 +723,4 @@ class AskSelScrape(SelScrape):
                 pass
 
         WebDriverWait(self.webdriver, 5).until(wait_until_keyword_in_url)
+

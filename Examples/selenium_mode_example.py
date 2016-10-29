@@ -4,7 +4,7 @@
 from GoogleScraper import scrape_with_config, GoogleSearchError
 
 keywords = [
-    'golden'
+    'atlar'
 ]
 
 # See in the config.cfg file for possible values

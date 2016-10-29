@@ -218,6 +218,9 @@ def main(return_results=False, parse_cmd_line=True, config_from_dict=None):
     pages = int(config.get('num_pages_for_keyword', 1))
     method = config.get('scrape_method', 'http')
 
+    se_start = config.get('se_start')
+    se_end = config.get('se_end')
+
     if config.get('shell', False):
         namespace = {}
         session_cls = get_session(config, scoped=False)

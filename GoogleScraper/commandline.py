@@ -29,6 +29,12 @@ def get_command_line(only_print_help=False):
                              'second if you have the necessary number of proxies available. ',
                         choices=('http', 'selenium', 'http-async'))
 
+    parser.add_argument('--se_start', type=str, action='store', default=None,
+                        help='Serach Engine start date')
+
+    parser.add_argument('--se_end', type=str, action='store', default=None,
+                        help='Serach Engine end date')
+
     parser.add_argument('--sel-browser', choices=['firefox', 'chrome', 'phantomjs'], default='phantomjs',
                         help='The browser frontend for selenium scraping mode. Does only make sense if --scrape-method is set to "selenium"')
 
