@@ -601,16 +601,18 @@ class SelScrape(SearchEngineScrape, threading.Thread):
         end_date = self.config.get('se_end', None)
 
         if engine == 'bing':
+            time.sleep(7)
             self.webdriver.find_element_by_class_name("fs_label").click()
             time.sleep(0.25)
-
             start_date_script = "document.getElementById('date_range_start').value='" + start_date + "'"
             end_date_script = "document.getElementById('date_range_end').value='" + end_date + "'"
-
+            time.sleep(0.25)
             self.webdriver.execute_script(start_date_script)
+            time.sleep(0.25)
             self.webdriver.execute_script(end_date_script)
-
+            time.sleep(0.25)
             self.webdriver.find_element_by_css_selector(".cbtn input").click()
+            time.sleep(0.25)
 
         if engine == 'google...':
 
