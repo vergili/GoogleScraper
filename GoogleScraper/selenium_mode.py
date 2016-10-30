@@ -612,6 +612,41 @@ class SelScrape(SearchEngineScrape, threading.Thread):
 
             self.webdriver.find_element_by_css_selector(".cbtn input").click()
 
+        if engine == 'google...':
+
+            # TODO google date selection currently not active. Make it active
+            self.webdriver.find_element_by_css_selector(".hdtb-tl").click()
+            time.sleep(0.1)
+
+            self.webdriver.find_element_by_css_selector(".hdtb-mn-hd").click()
+            time.sleep(0.1)
+
+            self.webdriver.find_element_by_css_selector("#cdrlnk").click()
+            time.sleep(0.1)
+
+            # self.webdriver.find_element_by_css_selector("input.cdr_min").clear()
+            # self.webdriver.find_element_by_css_selector("input.cdr_min").send_keys(start_date)
+            #
+            # self.webdriver.find_element_by_css_selector("input.cdr_max").clear()
+            # self.webdriver.find_element_by_css_selector("input.cdr_max").send_keys(end_date)
+
+            self.webdriver.find_element_by_css_selector(".cdr_go").click()
+
+        if engine == 'baidu...':
+            # TODO baidu date selection currently not active. Make it active
+            self.webdriver.find_element_by_css_selector(".search_tool").click()
+            time.sleep(0.1)
+
+            self.webdriver.find_element_by_css_selector(".search_tool_tf.c-gap-left").click()
+            time.sleep(0.1)
+
+            self.webdriver.find_element_by_css_selector(".c-tip-custom-st input").clear()
+            self.webdriver.find_element_by_css_selector(".c-tip-custom-st input").send_keys(start_date)
+
+            self.webdriver.find_element_by_css_selector(".c-tip-custom-et input").clear()
+            self.webdriver.find_element_by_css_selector(".c-tip-custom-et input").send_keys(end_date)
+
+            self.webdriver.find_element_by_css_selector(".c-tip-custom-submit").click()
 
 
     def page_down(self):
